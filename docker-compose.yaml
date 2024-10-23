@@ -1,0 +1,12 @@
+version: '3.1'
+services:
+  web:
+    image: nginx:latest
+    container_name: nginxrp
+    ports:
+      - "8080:80"
+      - "443:443"
+    volumes:
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./html:/usr/share/nginx/html
