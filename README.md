@@ -1,6 +1,6 @@
 Ce fichier documente les étapes pour déployer deux instances WordPress (wordpress1 et wordpress2) derrière un serveur Nginx configuré en tant que reverse proxy avec redirection HTTPS. Il utilise Docker pour la gestion des services.
 Prérequis
-
+    rangé dans /root/docker-easy   serveur VPS2
     Serveur avec Docker et Docker Compose installés.
     Nginx configuré avec les certificats SSL (Let's Encrypt ou auto-signés).
     Domaines ou sous-domaines configurés pour pointer vers votre serveur (par exemple jhennebo.be).
@@ -309,3 +309,76 @@ SELECT option_name, option_value FROM wp_options WHERE option_name IN ('siteurl'
 UPDATE wp_options SET option_value = 'https://jhennebo.be/wordpress1' WHERE option_name = 'siteurl' OR option_name = 'home';
 
 
+9.modifier la pondération entre les sites 
+# Groupe de serveurs pour l'équilibrage de charge avec pondération
+upstream wordpress_backend {
+    server wordpress1:80 weight=3; # Priorité plus élevée (plus de trafic)
+    server wordpress2:80 weight=1; # Moins de trafic
+}
+
+# Redirection HTTP vers HTTPS
+server {
+    listen 80;
+    server_name jhennebo.be www.jhennebo.be;
+
+    # Redirection vers HTTPS
+    return 301 https://$host$request_uri;
+}
+
+# Configuration pour HTTPS
+server {
+    listen 443 ssl;
+    server_name jhennebo.be www.jhennebo.be;
+
+    # Certificats SSL
+    ssl_certificate /etc/nginx/ssl/full_chain.pem;
+    ssl_certificate_key /etc/nginx/ssl/jhennebo.be_private_key.key;
+
+    # Paramètres SSL recommandés
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+
+    # Site principal
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+    }
+
+    # Proxy vers le groupe de serveurs équilibrés (wordpress1 et wordpress2)
+    location /wordpress1/ {
+        proxy_pass http://wordpress_backend/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location /wordpress2/ {
+        proxy_pass http://wordpress_backend/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+Explication
+
+    Pondération avec weight : La ligne server wordpress1:80 weight=3; signifie que wordpress1 recevra trois fois plus de trafic que wordpress2, qui a un poids de 1.
+    Si vous souhaitez que le trafic soit 100% dirigé vers wordpress1 sauf en cas de panne, vous pouvez simplement mettre un poids très élevé pour wordpress1 et très bas pour wordpress2.
+
+Résultat
+
+    Avec cette configuration, le reverse proxy va privilégier wordpress1 en lui attribuant une proportion de trafic plus importante par rapport à wordpress2.
+
+Vous avez dit :
+Pondération avec weight : La ligne server wordpress1:80 weight=3; signifie que wordpress1 recevra trois fois plus de trafic que wordpress2, qui a un poids de 1. oui mais aprés ça dépend aussi des equetes des clients.   si le site wordpress 2 a plus de demande, que se passe t il?
+ChatGPT a dit :
+ChatGPT
+
+C’est une bonne question ! Dans un scénario d’équilibrage de charge avec pondération, comme celui configuré avec weight, voici comment cela fonctionne en pratique :
+
+    Distribution initiale du trafic :
+        Avec server wordpress1:80 weight=3; et server wordpress2:80 weight=1;, NGINX va essayer de diriger environ 75% des requêtes vers wordpress1 et 25% des requêtes vers wordpress2.
+        Cela signifie que pour chaque 4 requêtes, 3 seront envoyées à wordpress1 et 1 sera envoyée à wordpress2, en moyenne.
