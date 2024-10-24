@@ -10,3 +10,36 @@ services:
       - ./nginx/ssl:/etc/nginx/ssl
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./html:/usr/share/nginx/html
+      - ./nginx/logs:/var/log/nginx
+
+  web1:
+    image: wordpress:latest
+    container_name: wordpress1
+    volumes:
+      - ./wordpress/wp1:/var/www/html
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wp1
+      - WORDPRESS_DB_PASSWORD=wordpress1234
+      - WORDPRESS_DB_NAME=wordpress1
+
+  web2:
+    image: wordpress:latest
+    container_name: wordpress2
+    volumes:
+      - ./wordpress/wp2:/var/www/html
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wp2
+      - WORDPRESS_DB_PASSWORD=wordpress1234
+      - WORDPRESS_DB_NAME=wordpress2
+
+  db:
+    image: mariadb:latest
+    container_name: db
+    volumes:
+      - ./mariadb_data:/var/lib/mysql 
+    environment:
+      MYSQL_ROOT_PASSWORD: "root1234"
+      MYSQL_USER: "wp1"
+      MYSQL_PASSWORD: "wordpress1234"
