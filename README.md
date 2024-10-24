@@ -4,7 +4,16 @@ Prérequis
     Serveur avec Docker et Docker Compose installés.
     Nginx configuré avec les certificats SSL (Let's Encrypt ou auto-signés).
     Domaines ou sous-domaines configurés pour pointer vers votre serveur (par exemple jhennebo.be).
+    
+- Assurez-vous qu'aucune autre instance de Nginx ne tourne sur le serveur. Vous pouvez vérifier cela avec la commande suivante :
+  ```bash
+  sudo systemctl status nginx
 
+Si Nginx est actif, vous devez l'arrêter avant de commencer :
+
+bash
+
+sudo systemctl stop nginx
 Structure du projet
 
 .
