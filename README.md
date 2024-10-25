@@ -1,6 +1,6 @@
 Ce fichier documente les étapes pour déployer deux instances WordPress (wordpress1 et wordpress2) derrière un serveur Nginx configuré en tant que reverse proxy avec redirection HTTPS. Il utilise Docker pour la gestion des services.
 Prérequis
-    rangé dans /root/docker-easy   serveur VPS2
+    rangé dans /srv/docker-easy   serveur VPS2
     Serveur avec Docker et Docker Compose installés.
     Nginx configuré avec les certificats SSL (Let's Encrypt ou auto-signés).
     Domaines ou sous-domaines configurés pour pointer vers votre serveur (par exemple jhennebo.be).
