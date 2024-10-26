@@ -1,3 +1,6 @@
 # Ignorer les dossiers WordPress
 wordpress/wp1/
 wordpress/wp2/
+mariadb_data/wordpress1
+mariadb_data/wordpress2
+
