@@ -271,3 +271,58 @@
 2024/10/24 11:57:10 [warn] 21#21: *100 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/0/01/0000000010 while reading upstream, client: 217.181.164.78, server: jhennebo.be, request: "GET /wordpress1/wp-content/themes/twentytwentyfour/assets/images/building-exterior.webp HTTP/1.1", upstream: "http://172.19.0.2:80/wp-content/themes/twentytwentyfour/assets/images/building-exterior.webp", host: "jhennebo.be", referrer: "https://jhennebo.be/wordpress1/"
 2024/10/24 11:58:21 [error] 20#20: *113 open() "/usr/share/nginx/html/_ignition/execute-solution" failed (2: No such file or directory), client: 83.97.73.245, server: jhennebo.be, request: "GET /_ignition/execute-solution HTTP/1.1", host: "217.160.234.181:443"
 2024/10/24 11:59:51 [warn] 20#20: *114 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/1/01/0000000011 while reading upstream, client: 217.181.164.78, server: jhennebo.be, request: "GET /wordpress1/wp-content/themes/twentytwentyfour/assets/images/building-exterior.webp HTTP/1.1", upstream: "http://172.19.0.2:80/wp-content/themes/twentytwentyfour/assets/images/building-exterior.webp", host: "jhennebo.be", referrer: "https://jhennebo.be/wordpress2/"
+2024/10/26 08:04:06 [notice] 1#1: using the "epoll" event method
+2024/10/26 08:04:06 [notice] 1#1: nginx/1.27.2
+2024/10/26 08:04:06 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/10/26 08:04:06 [notice] 1#1: OS: Linux 5.15.0-119-generic
+2024/10/26 08:04:06 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/10/26 08:04:06 [notice] 1#1: start worker processes
+2024/10/26 08:04:06 [notice] 1#1: start worker process 20
+2024/10/26 08:04:06 [notice] 1#1: start worker process 21
+2024/10/26 08:06:43 [error] 21#21: *3 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 82.65.31.116, server: jhennebo.be, request: "GET /favicon.ico HTTP/1.1", host: "jhennebo.be", referrer: "https://jhennebo.be/wordpress1/wp-admin/install.php"
+2024/10/26 08:16:44 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/10/26 08:16:44 [notice] 21#21: gracefully shutting down
+2024/10/26 08:16:44 [notice] 21#21: exiting
+2024/10/26 08:16:44 [notice] 20#20: gracefully shutting down
+2024/10/26 08:16:44 [notice] 20#20: exiting
+2024/10/26 08:16:44 [notice] 20#20: exit
+2024/10/26 08:16:44 [notice] 21#21: exit
+2024/10/26 08:16:44 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2024/10/26 08:16:44 [notice] 1#1: worker process 20 exited with code 0
+2024/10/26 08:16:44 [notice] 1#1: signal 29 (SIGIO) received
+2024/10/26 08:16:44 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2024/10/26 08:16:44 [notice] 1#1: worker process 21 exited with code 0
+2024/10/26 08:16:44 [notice] 1#1: exit
+2024/10/26 08:16:46 [notice] 1#1: using the "epoll" event method
+2024/10/26 08:16:46 [notice] 1#1: nginx/1.27.2
+2024/10/26 08:16:46 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/10/26 08:16:46 [notice] 1#1: OS: Linux 5.15.0-119-generic
+2024/10/26 08:16:46 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/10/26 08:16:46 [notice] 1#1: start worker processes
+2024/10/26 08:16:46 [notice] 1#1: start worker process 20
+2024/10/26 08:16:46 [notice] 1#1: start worker process 21
+2024/10/26 08:16:59 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/10/26 08:16:59 [notice] 20#20: gracefully shutting down
+2024/10/26 08:16:59 [notice] 21#21: gracefully shutting down
+2024/10/26 08:16:59 [notice] 20#20: exiting
+2024/10/26 08:16:59 [notice] 21#21: exiting
+2024/10/26 08:16:59 [notice] 20#20: exit
+2024/10/26 08:16:59 [notice] 21#21: exit
+2024/10/26 08:16:59 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2024/10/26 08:16:59 [notice] 1#1: worker process 21 exited with code 0
+2024/10/26 08:16:59 [notice] 1#1: signal 29 (SIGIO) received
+2024/10/26 08:16:59 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2024/10/26 08:16:59 [notice] 1#1: worker process 20 exited with code 0
+2024/10/26 08:16:59 [notice] 1#1: exit
+2024/10/26 08:19:23 [notice] 1#1: using the "epoll" event method
+2024/10/26 08:19:23 [notice] 1#1: nginx/1.27.2
+2024/10/26 08:19:23 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/10/26 08:19:23 [notice] 1#1: OS: Linux 5.15.0-119-generic
+2024/10/26 08:19:23 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/10/26 08:19:23 [notice] 1#1: start worker processes
+2024/10/26 08:19:23 [notice] 1#1: start worker process 20
+2024/10/26 08:19:23 [notice] 1#1: start worker process 21
+2024/10/26 08:22:26 [warn] 20#20: *10 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/1/00/0000000001 while reading upstream, client: 82.65.31.116, server: jhennebo.be, request: "GET /wordpress1/wp-content/themes/twentytwentyfour/assets/images/windows.webp HTTP/1.1", upstream: "http://172.18.0.5:80/wp-content/themes/twentytwentyfour/assets/images/windows.webp", host: "jhennebo.be", referrer: "https://jhennebo.be/wordpress1/"
+2024/10/26 08:22:26 [warn] 20#20: *9 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/2/00/0000000002 while reading upstream, client: 82.65.31.116, server: jhennebo.be, request: "GET /wordpress1/wp-content/themes/twentytwentyfour/assets/images/building-exterior.webp HTTP/1.1", upstream: "http://172.18.0.3:80/wp-content/themes/twentytwentyfour/assets/images/building-exterior.webp", host: "jhennebo.be", referrer: "https://jhennebo.be/wordpress1/"
+2024/10/26 08:22:26 [warn] 20#20: *8 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/3/00/0000000003 while reading upstream, client: 82.65.31.116, server: jhennebo.be, request: "GET /wordpress1/wp-content/themes/twentytwentyfour/assets/fonts/inter/Inter-VariableFont_slnt,wght.woff2 HTTP/1.1", upstream: "http://172.18.0.5:80/wp-content/themes/twentytwentyfour/assets/fonts/inter/Inter-VariableFont_slnt,wght.woff2", host: "jhennebo.be", referrer: "https://jhennebo.be/wordpress1/"
+2024/10/26 08:22:26 [warn] 20#20: *20 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/4/00/0000000004 while reading upstream, client: 82.65.31.116, server: jhennebo.be, request: "GET /wordpress1/wp-content/themes/twentytwentyfour/assets/fonts/cardo/cardo_normal_400.woff2 HTTP/1.1", upstream: "http://172.18.0.5:80/wp-content/themes/twentytwentyfour/assets/fonts/cardo/cardo_normal_400.woff2", host: "jhennebo.be", referrer: "https://jhennebo.be/wordpress1/"

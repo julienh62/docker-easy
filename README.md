@@ -16,23 +16,50 @@ bash
 sudo systemctl stop nginx
 Structure du projet
 
-.
-├── conf.d
-├── html
-├── mariadb_data
-│   ├── mysql
-│   ├── performance_schema
-│   ├── sys
-│   ├── wordpress1
-│   └── wordpress2
-├── nginx
-│   ├── conf.d
-│   ├── default.conf
-│   ├── logs
-│   └── ssl
-└── wordpress
-    ├── wp1
-    └── wp2
+root@ubuntu:/srv/docker-easy# tree -d -L 2 -p
+[drwxr-xr-x]  .
+├── [drwxr-xr-x]  html
+├── [drwxr-xr-x]  mariadb_data
+│   ├── [drwxr-xr-x]  mysql
+│   ├── [drwxr-xr-x]  performance_schema
+│   ├── [drwxr-xr-x]  sys
+│   ├── [drwxr-xr-x]  wordpress1
+│   └── [drwxr-xr-x]  wordpress2
+├── [drwxr-xr-x]  nginx
+│   ├── [drwxr-xr-x]  conf.d
+│   ├── [drwxr-xr-x]  logs
+│   └── [drwxr-xr-x]  ssl
+└── [drwxr-xr-x]  wordpress
+    ├── [drwxr-xr-x]  wp1
+    └── [drwxr-xr-x]  wp2
+
+14 directories
+root@ubuntu:/srv/docker-easy# 
+root@ubuntu:/srv/docker-easy# ls -l
+total 40
+-rw-r--r-- 1 www-data www-data 12299 Oct 26 08:36 README.md
+-rw-r--r-- 1 www-data www-data  1070 Oct 26 07:59 docker-compose.yaml
+drwxr-xr-x 2 www-data www-data  4096 Oct 26 07:59 html
+drwxr-xr-x 7 lxd      docker    4096 Oct 26 08:19 mariadb_data
+drwxr-xr-x 5 www-data www-data  4096 Oct 26 07:59 nginx
+-rw-r--r-- 1 www-data www-data    12 Oct 26 07:59 readme.txt
+drwxr-xr-x 4 www-data www-data  4096 Oct 26 08:14 wordpress
+root@ubuntu:/srv/docker-easy# 
+root@ubuntu:/srv/docker-easy/nginx# ls -l
+total 12
+drwxr-xr-x 2 www-data www-data 4096 Oct 26 07:59 conf.d
+drwxr-xr-x 2 www-data www-data 4096 Oct 26 07:59 logs
+drwxr-xr-x 2 www-data www-data 4096 Oct 26 07:59 ssl
+root@ubuntu:/srv/docker-easy/nginx# cd ssl
+root@ubuntu:/srv/docker-easy/nginx/ssl# ls -l
+total 24
+-rw-r--r-- 1 www-data www-data 6278 Oct 26 07:59 full_chain.pem
+-rw-r--r-- 1 www-data www-data 2134 Oct 26 07:59 intermediate1.cer
+-rw-r--r-- 1 www-data www-data 1938 Oct 26 07:59 intermediate2.cer
+-rw-r--r-- 1 www-data www-data 1678 Oct 26 07:59 jhennebo.be_private_key.key
+-rw-r--r-- 1 www-data www-data 2204 Oct 26 07:59 jhennebo.be_ssl_certificate.cer
+root@ubuntu:/srv/docker-easy/nginx/ssl# cd ..
+root@ubuntu:/srv/docker-easy/nginx# 
 
 Étapes d'installation
 1. Créer le fichier docker-compose.yaml
@@ -195,6 +222,7 @@ Placer les certificats SSL dans nginx/ssl/ :
 
    sudo chown -R www-data:www-data /chemin/vers/ton/répertoire
 
+  chown -R www-data:www-data
    Modifier les permissions d'un répertoire (par exemple, pour donner des droits de lecture, écriture et exécution à l'utilisateur et aux groupes) :
 
    bash
