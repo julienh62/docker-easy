@@ -10,6 +10,7 @@ Prérequis
   sudo systemctl status nginx
 
 Si Nginx est actif, vous devez l'arrêter avant de commencer :
+ps aux | grep nginx
 
 bash
 
